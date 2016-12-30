@@ -8,21 +8,21 @@ import android.content.Context;
  * Created by Fleming on 2016/9/26.
  */
 
-public class Loading {
+public class LoadingUtils {
 
-    private static Loading mLoading;
+    private static LoadingUtils sLoading;
     private Context mContext;
     private ProgressDialog mDialog;
 
-    private Loading(Context context) {
+    private LoadingUtils(Context context) {
         mContext = context;
     }
 
-    public static Loading getInstance(Context context) {
-        if (mLoading == null) {
-            mLoading = new Loading(context);
+    public static LoadingUtils getInstance(Context context) {
+        if (sLoading == null) {
+            sLoading = new LoadingUtils(context);
         }
-        return mLoading;
+        return sLoading;
     }
 
     public void hideDialog() {
@@ -36,7 +36,7 @@ public class Loading {
         if (mDialog == null) {
             mDialog = new ProgressDialog(mContext);
             mDialog.setTitle("加载中……");
-            mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             mDialog.setProgress(currentPgs);
             mDialog.show();
         } else {
